@@ -46,9 +46,9 @@ func InternalError() CommonResponse {
 	return Fail(ErrorCodeInternalError, "internal error")
 }
 
-func Fail(errorCode ErrorCode, message string) CommonResponse {
+func Fail(errorCode ErrorCode, errorMessage string) CommonResponse {
 	return CommonResponse{
-		Message:   message,
+		Message:   errorMessage,
 		ErrorCode: errorCode,
 	}
 }
