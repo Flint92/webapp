@@ -8,8 +8,8 @@ import (
 )
 
 type Server interface {
+	handler.Routable
 	Name() string
-	Route(method string, pattern string, handler func(*context.Context))
 	Start(address string)
 }
 
@@ -30,7 +30,7 @@ func (s *sdkHttpServer) Name() string {
 }
 
 func (s *sdkHttpServer) Route(method string, pattern string, handler func(*context.Context)) {
-	s.handler.AddRoute(method, pattern, handler)
+	s.handler.Route(method, pattern, handler)
 }
 
 func (s *sdkHttpServer) Start(address string) {

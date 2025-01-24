@@ -5,8 +5,12 @@ import (
 	"log"
 )
 
+type Routable interface {
+	Route(method string, pattern string, handler func(*context.Context))
+}
+
 type Handler interface {
-	AddRoute(method string, pattern string, handler func(*context.Context))
+	Routable
 	ServeHTTP(ctx *context.Context)
 }
 
@@ -20,7 +24,7 @@ func NewHandler() Handler {
 	}
 }
 
-func (h *BasedOnMapHandler) AddRoute(method string, pattern string, handler func(*context.Context)) {
+func (h *BasedOnMapHandler) Route(method string, pattern string, handler func(*context.Context)) {
 	k := routeKey(method, pattern)
 	if _, ok := h.routes[k]; ok {
 		log.Fatalf("route already exists: %s", k)
