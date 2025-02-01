@@ -46,5 +46,5 @@ func (h *BasedOnMapHandler) ServeHTTP(ctx *context.Context) {
 }
 
 func routeKey(method, path string) string {
-	return method + "-" + path
+	return method + "#" + path
 }
