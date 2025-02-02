@@ -42,7 +42,7 @@ func (s *sdkHttpServer) Name() string {
 	return s.name
 }
 
-func (s *sdkHttpServer) Route(method string, pattern string, handler func(*context.Context)) {
+func (s *sdkHttpServer) Route(method string, pattern string, handler handler.HandlerFunc) {
 	s.handler.Route(method, pattern, handler)
 }
 

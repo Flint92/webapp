@@ -8,14 +8,16 @@ import (
 )
 
 type Context struct {
-	W http.ResponseWriter
-	R *http.Request
+	W          http.ResponseWriter
+	R          *http.Request
+	PathParams map[string]string
 }
 
 func NewContext(w http.ResponseWriter, r *http.Request) *Context {
 	return &Context{
-		W: w,
-		R: r,
+		W:          w,
+		R:          r,
+		PathParams: make(map[string]string),
 	}
 }
 
